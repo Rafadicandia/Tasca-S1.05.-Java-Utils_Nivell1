@@ -4,11 +4,9 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 public class PrintDirectoryTree {
 
 
@@ -43,16 +41,12 @@ public class PrintDirectoryTree {
                 String lastModified = Files.getLastModifiedTime(entry).toString();
                 String fileName = entry.toString();
                 System.out.println(
+                        fileName+ "\n"+lastModified+"\n"
+                                +type
 
                 );
             }
-
-
         }
-
-
-
-
 
     }
 
