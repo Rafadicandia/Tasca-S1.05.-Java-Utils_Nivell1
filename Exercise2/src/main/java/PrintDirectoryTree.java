@@ -7,16 +7,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DirectoryLister {
+public class PrintDirectoryTree {
 
-    public static List<String> sortList(Path directoryPath) throws IOException {
+    public static void sortList(Path directoryPath) throws IOException {
 
-        List<String> contents = new ArrayList<>();
+        List<Path> contents = new ArrayList<>();
+
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directoryPath)) {
 
 
             for (Path entry : stream) {
-                contents.add(entry.toString());
+                contents.add(entry);
             }
 
             Collections.sort(contents);
@@ -26,7 +27,22 @@ public class DirectoryLister {
             throw e;
         }
 
-        return contents;
+
+
+        for (Path entry: contents){
+            if(Files.isDirectory(entry)){
+                String type = "-D";
+            }else{
+                String type = "-N";
+            }
+
+
+        }
+
+        System.out.println(
+
+
+        );
     }
 
 
@@ -36,6 +52,7 @@ public class DirectoryLister {
             System.out.println("Usage: java DirectoryLister <directory_path>");
             return;
         }
+
         Path directoryPath = Paths.get(args[0]);
 
         if (!Files.exists(directoryPath)) {
