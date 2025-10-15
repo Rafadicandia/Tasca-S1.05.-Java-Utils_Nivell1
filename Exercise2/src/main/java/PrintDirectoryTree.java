@@ -1,13 +1,17 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class PrintDirectoryTree {
+
+
 
     public static void sortList(Path directoryPath) throws IOException {
 
@@ -28,21 +32,28 @@ public class PrintDirectoryTree {
         }
 
 
-
         for (Path entry: contents){
             if(Files.isDirectory(entry)){
                 String type = "-D";
+
+
+
             }else{
                 String type = "-N";
+                String lastModified = Files.getLastModifiedTime(entry).toString();
+                String fileName = entry.toString();
+                System.out.println(
+
+                );
             }
 
 
         }
 
-        System.out.println(
 
 
-        );
+
+
     }
 
 
