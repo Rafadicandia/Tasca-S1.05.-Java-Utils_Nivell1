@@ -5,11 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DirectoryLister {
 
-    public static void sortList( Path directoryPath){
+    public static List<String> sortList(Path directoryPath) throws IOException {
 
         List<String> contents = new ArrayList<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directoryPath)) {
@@ -19,20 +20,15 @@ public class DirectoryLister {
                 contents.add(entry.toString());
             }
 
-            // 2. Ordenar la lista alfabéticamente.
-            // [TU CÓDIGO AQUÍ: Ordenar la lista 'contents']
-            contents.sort();
+
+            Collections.sort(contents);
 
         } catch (IOException e) {
-            // Manejo de errores de IO (por ejemplo, falta de permisos).
+           
             throw e;
         }
 
         return contents;
-    }
-
-
-
     }
 
 
@@ -49,12 +45,24 @@ public class DirectoryLister {
             return;
         }
 
-        if (!Files.isDirectory(directoryPath) ) {
-        System.err.println("Error: The path is not a directory: " + directoryPath);
-        return;
-    }
+        if (!Files.isDirectory(directoryPath)) {
+            System.err.println("Error: The path is not a directory: " + directoryPath);
+            return;
 
 
+        }
+        try {
+            List<String> sortedContents = sortList(directoryPath);
 
+            for(String e:sortedContents){
+                System.out.println(e);
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error reading directory: " + e.getMessage());
+        }
     }
 }
+
+
+
