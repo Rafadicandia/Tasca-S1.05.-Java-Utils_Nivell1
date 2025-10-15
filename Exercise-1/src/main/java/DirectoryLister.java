@@ -24,7 +24,7 @@ public class DirectoryLister {
             Collections.sort(contents);
 
         } catch (IOException e) {
-           
+
             throw e;
         }
 
