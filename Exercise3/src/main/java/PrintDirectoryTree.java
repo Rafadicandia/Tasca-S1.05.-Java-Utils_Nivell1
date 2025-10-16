@@ -54,7 +54,7 @@ public class PrintDirectoryTree {
 
 
             }else{
-                
+
                 String type = "-F";
                 String indent = " ".repeat(depth);
                 FileTime lastModified = Files.getLastModifiedTime(entry);
