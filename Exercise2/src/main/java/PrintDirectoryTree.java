@@ -3,13 +3,19 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.FileTime;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 public class PrintDirectoryTree {
 
-    public static void PrintDirectoryTree(Path directoryPath) throws IOException {
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
+    public static void PrintDirectoryTree(Path directoryPath, int depth) throws IOException {
 
         List<Path> contents = new ArrayList<>();
 
@@ -31,23 +37,32 @@ public class PrintDirectoryTree {
 
 
         for (Path entry: contents){
+            String dateStr;
             if(Files.isDirectory(entry)){
                 String type = "-D";
+                String indent = " ".repeat(depth);
                 String directoryName = entry.getFileName().toString();
 
-                System.out.println(
+                System.out.println(indent+
                         directoryName+
                                 type
                 );
+                try {
+                    PrintDirectoryTree(entry, depth + 1);
+                } catch (IOException e) {
+                    // Manejar la excepción (ej. imprimir un error de permiso)
+                }
 
             }else{
                 String type = "-F";
-                String lastModified = "Last modified: "+ Files.getLastModifiedTime(entry);
+                String indent = " ".repeat(depth);
+                FileTime lastModified = Files.getLastModifiedTime(entry);
+                dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 String fileName = entry.getFileName().toString();
-                String indent = " ".repeat(3);
+
                 System.out.println(indent+
                         fileName+type+" "+
-                                lastModified
+                        dateStr
 
                 );
             }
@@ -76,7 +91,8 @@ public class PrintDirectoryTree {
             return;
         }
         try {
-            PrintDirectoryTree(directoryPath);
+
+            PrintDirectoryTree(directoryPath, 0);
 
         } catch (IOException e) {
             System.err.println("Error reading directory: " + e.getMessage());
