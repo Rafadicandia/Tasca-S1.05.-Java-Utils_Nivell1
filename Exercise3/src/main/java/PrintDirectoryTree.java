@@ -54,11 +54,7 @@ public class PrintDirectoryTree {
 
 
             }else{
-                if(entry.getFileName().toString().endsWith(".txt")) {
-                    ReadTxtFiles.PrintFileContentInConsole(entry);
-                }
-
-
+                
                 String type = "-F";
                 String indent = " ".repeat(depth);
                 FileTime lastModified = Files.getLastModifiedTime(entry);
