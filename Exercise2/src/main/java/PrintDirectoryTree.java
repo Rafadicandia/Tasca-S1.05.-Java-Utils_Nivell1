@@ -52,11 +52,12 @@ public class PrintDirectoryTree {
     public static void main(String[] args) {
 
         if (args.length != 1) {
-            System.out.println("Usage: java DirectoryLister <directory_path>");
+            System.out.println("Usage: java PrintDirectoryTree <directory_path>");
             return;
         }
 
-        Path directoryPath = Paths.get(args[0]);
+       Path directoryPath = Paths.get(args[0]);
+
 
         if (!Files.exists(directoryPath)) {
             System.err.println("Error: The file does not exist in the path" + directoryPath);
