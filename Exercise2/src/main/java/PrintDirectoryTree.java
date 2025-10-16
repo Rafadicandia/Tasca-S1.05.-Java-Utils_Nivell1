@@ -1,19 +1,15 @@
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 public class PrintDirectoryTree {
 
-
-
-    public static void sortList(Path directoryPath) throws IOException {
+    public static void PrintDirectoryTree(Path directoryPath) throws IOException {
 
         List<Path> contents = new ArrayList<>();
 
@@ -38,23 +34,18 @@ public class PrintDirectoryTree {
             if(Files.isDirectory(entry)){
                 String type = "-D";
                 String directoryName = entry.getFileName().toString();
+
                 System.out.println(
                         directoryName+
                                 type
                 );
-                try{
-                    sortList(entry);
-
-                }
-                catch (IOException e){
-
-                }
 
             }else{
                 String type = "-F";
                 String lastModified = "Last modified: "+ Files.getLastModifiedTime(entry);
                 String fileName = entry.getFileName().toString();
-                System.out.println("  "+
+                String indent = " ".repeat(3);
+                System.out.println(indent+
                         fileName+type+" "+
                                 lastModified
 
@@ -85,12 +76,7 @@ public class PrintDirectoryTree {
             return;
         }
         try {
-            sortList(directoryPath);
-//            List<String> sortedContents = sortList(directoryPath);
-//
-//            for(String e:sortedContents){
-//                System.out.println(e);
-//            }
+            PrintDirectoryTree(directoryPath);
 
         } catch (IOException e) {
             System.err.println("Error reading directory: " + e.getMessage());
