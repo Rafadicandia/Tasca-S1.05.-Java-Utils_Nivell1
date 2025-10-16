@@ -35,17 +35,16 @@ public class PrintDirectoryTree {
 
 
         for (Path entry: contents){
-            PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("ListedDirectoryTree.txt", "UTF-8");
             String dateStr;
             if(Files.isDirectory(entry)){
                 String type = "-D";
                 String indent = " ".repeat(depth);
                 String directoryName = entry.getFileName().toString();
-
-                System.out.println(indent+
+                writer.println(indent+
                         directoryName+
-                                type
-                );
+                        type);
+
                 try {
                     PrintDirectoryTree(entry, depth + 1);
                 } catch (IOException e) {
@@ -59,12 +58,13 @@ public class PrintDirectoryTree {
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 String fileName = entry.getFileName().toString();
 
-                System.out.println(indent+
+                writer.println(indent+
                         fileName+type+" "+
                         dateStr
 
                 );
             }
+            writer.close();
         }
 
     }
