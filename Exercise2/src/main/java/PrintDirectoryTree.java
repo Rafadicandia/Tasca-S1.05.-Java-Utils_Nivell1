@@ -4,6 +4,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,20 +37,21 @@ public class PrintDirectoryTree {
         for (Path entry: contents){
             if(Files.isDirectory(entry)){
                 String type = "-D";
-                String directoryName = entry.toString();
+                int lasIndex = entry.getNameCount();
+                String directoryName = entry.getName(lasIndex).toString();
                 System.out.println(
-                        directoryName+ "\n"
-                                +type
+                        directoryName+
+                                type
                 );
 
             }else{
-                String type = "-N";
-                String lastModified = Files.getLastModifiedTime(entry).toString();
-                String fileName = entry.toString();
+                String type = "-F";
+                String lastModified = "Last modified: "+ Files.getLastModifiedTime(entry);
+                String fileName = entry.getFileName().toString();
                 System.out.println(
-                        fileName+ "\n"+
-                                lastModified+"\n"
-                                +type
+                        fileName+type+" "+
+                                lastModified
+
                 );
             }
         }
