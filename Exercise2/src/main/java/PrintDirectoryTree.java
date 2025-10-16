@@ -33,6 +33,11 @@ public class PrintDirectoryTree {
         for (Path entry: contents){
             if(Files.isDirectory(entry)){
                 String type = "-D";
+                String directoryName = entry.toString();
+                System.out.println(
+                        directoryName+ "\n"
+                                +type
+                );
 
             }else{
                 String type = "-N";
