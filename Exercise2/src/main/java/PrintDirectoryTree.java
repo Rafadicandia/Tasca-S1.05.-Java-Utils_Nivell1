@@ -34,16 +34,14 @@ public class PrintDirectoryTree {
             if(Files.isDirectory(entry)){
                 String type = "-D";
 
-
-
             }else{
                 String type = "-N";
                 String lastModified = Files.getLastModifiedTime(entry).toString();
                 String fileName = entry.toString();
                 System.out.println(
-                        fileName+ "\n"+lastModified+"\n"
+                        fileName+ "\n"+
+                                lastModified+"\n"
                                 +type
-
                 );
             }
         }
@@ -68,21 +66,17 @@ public class PrintDirectoryTree {
         if (!Files.isDirectory(directoryPath)) {
             System.err.println("Error: The path is not a directory: " + directoryPath);
             return;
-
-
         }
         try {
-            List<String> sortedContents = sortList(directoryPath);
-
-            for(String e:sortedContents){
-                System.out.println(e);
-            }
+            sortList(directoryPath);
+//            List<String> sortedContents = sortList(directoryPath);
+//
+//            for(String e:sortedContents){
+//                System.out.println(e);
+//            }
 
         } catch (IOException e) {
             System.err.println("Error reading directory: " + e.getMessage());
         }
     }
 }
-
-
-
