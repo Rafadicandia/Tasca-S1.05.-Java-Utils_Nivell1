@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 public class PrintDirectoryTree {
 
@@ -22,7 +23,9 @@ public class PrintDirectoryTree {
                 contents.add(entry);
             }
 
-            Collections.sort(contents);
+            Collections.sort(contents,
+                    Comparator.comparing(p -> p.getFileName().toString())
+            );
 
         } catch (IOException e) {
 
@@ -65,7 +68,7 @@ public class PrintDirectoryTree {
 
 
         if (!Files.exists(directoryPath)) {
-            System.err.println("Error: The file does not exist in the path" + directoryPath);
+            System.err.println("Error: The path does not exist:" + directoryPath);
             return;
         }
 
