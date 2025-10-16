@@ -37,18 +37,24 @@ public class PrintDirectoryTree {
         for (Path entry: contents){
             if(Files.isDirectory(entry)){
                 String type = "-D";
-                int lasIndex = entry.getNameCount();
-                String directoryName = entry.getName(lasIndex).toString();
+                String directoryName = entry.getFileName().toString();
                 System.out.println(
                         directoryName+
                                 type
                 );
+                try{
+                    sortList(entry);
+
+                }
+                catch (IOException e){
+
+                }
 
             }else{
                 String type = "-F";
                 String lastModified = "Last modified: "+ Files.getLastModifiedTime(entry);
                 String fileName = entry.getFileName().toString();
-                System.out.println(
+                System.out.println("  "+
                         fileName+type+" "+
                                 lastModified
 
