@@ -51,9 +51,13 @@ public class PrintDirectoryTree {
                 } catch (IOException e) {
                     throw e;
                 }
-               
+
 
             }else{
+
+                    ReadTxtFiles.PrintFileContentInConsole(entry);
+
+
 
                 String type = "-F";
                 String indent = " ".repeat(depth);
