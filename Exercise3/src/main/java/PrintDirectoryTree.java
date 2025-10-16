@@ -13,7 +13,7 @@ public class PrintDirectoryTree {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
-    public static void PrintDirectoryTree(Path directoryPath, int depth) throws IOException {
+    public static void PrintDirectoryTree(Path directoryPath, int depth, PrintWriter writer) throws IOException {
 
         List<Path> contents = new ArrayList<>();
 
@@ -35,9 +35,10 @@ public class PrintDirectoryTree {
 
 
         for (Path entry: contents){
-            PrintWriter writer = new PrintWriter("ListedDirectoryTree.txt", "UTF-8");
+
             String dateStr;
             if(Files.isDirectory(entry)){
+
                 String type = "-D";
                 String indent = " ".repeat(depth);
                 String directoryName = entry.getFileName().toString();
@@ -46,12 +47,14 @@ public class PrintDirectoryTree {
                         type);
 
                 try {
-                    PrintDirectoryTree(entry, depth + 1);
+                    PrintDirectoryTree(entry, depth + 1, writer);
                 } catch (IOException e) {
-                    // Manejar la excepción (ej. imprimir un error de permiso)
+                    throw e;
                 }
+               
 
             }else{
+
                 String type = "-F";
                 String indent = " ".repeat(depth);
                 FileTime lastModified = Files.getLastModifiedTime(entry);
@@ -63,8 +66,9 @@ public class PrintDirectoryTree {
                         dateStr
 
                 );
+
             }
-            writer.close();
+
         }
 
     }
@@ -90,8 +94,9 @@ public class PrintDirectoryTree {
             return;
         }
         try {
-
-            PrintDirectoryTree(directoryPath, 0);
+            PrintWriter writer = new PrintWriter("ListedDirectoryTree.txt", "UTF-8");
+            PrintDirectoryTree(directoryPath, 0, writer);
+            writer.close();
 
         } catch (IOException e) {
             System.err.println("Error reading directory: " + e.getMessage());
