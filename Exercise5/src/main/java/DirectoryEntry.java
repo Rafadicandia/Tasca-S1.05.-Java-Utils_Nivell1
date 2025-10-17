@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class DirectoryEntry implements Serializable {
@@ -24,6 +25,30 @@ public class DirectoryEntry implements Serializable {
             this.childs.add(child);
 
         }
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getType(){
+        return type;
+    }
+
+    public String getLastModified(){
+        return lastModified;
+    }
+
+    public List<DirectoryEntry> getChilds(List<DirectoryEntry> childs) {
+
+        for(DirectoryEntry i:childs){
+            childs.get(i);
+        }
+
+            
+
+    }
+
     }
 
 
