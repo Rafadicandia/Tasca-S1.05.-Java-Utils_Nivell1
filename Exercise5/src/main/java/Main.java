@@ -26,6 +26,7 @@ public class Main {
             return;
         }
         try {
+
             FileOutputStream fileOutputStream = new FileOutputStream("directoryTree.ser");
 
         } catch (IOException e) {
