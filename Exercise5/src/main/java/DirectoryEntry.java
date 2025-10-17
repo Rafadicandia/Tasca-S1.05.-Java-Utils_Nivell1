@@ -13,9 +13,16 @@ public class DirectoryEntry implements Serializable {
         this.name = name;
         this.type = type;
         this.lastModified = lastModified;
-        
+
         if(type.equals('D')) {
             this.childs = new ArrayList<>();
+        }
+    }
+
+    public void addChild(DirectoryEntry child){
+        if(this.childs != null){
+            this.childs.add(child);
+
         }
     }
 
