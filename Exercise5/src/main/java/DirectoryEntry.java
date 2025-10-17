@@ -15,7 +15,7 @@ public class DirectoryEntry implements Serializable {
         this.type = type;
         this.lastModified = lastModified;
 
-        if(type.equals('D')) {
+        if(type.equals("D")) {
             this.childs = new ArrayList<>();
         }
     }
@@ -39,14 +39,8 @@ public class DirectoryEntry implements Serializable {
         return lastModified;
     }
 
-    public List<DirectoryEntry> getChilds(List<DirectoryEntry> childs) {
-
-        for(DirectoryEntry i:childs){
-            childs.get(i);
-        }
-
-            
-
+    public List<DirectoryEntry> getChilds() {
+        return this.childs;
     }
 
     }
