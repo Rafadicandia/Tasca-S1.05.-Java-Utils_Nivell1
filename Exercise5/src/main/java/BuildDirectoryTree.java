@@ -9,7 +9,7 @@ import java.util.*;
 public class BuildDirectoryTree {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public static void TransformFilesToObjects(Path directoryPath, int depth) throws IOException {
+    public static List<DirectoryEntry> TransformFilesToObjects(Path directoryPath) throws IOException {
 
         List<Path> contents = new ArrayList<>();
 
@@ -35,7 +35,6 @@ public class BuildDirectoryTree {
 
 
                 String type = "-D";
-                String indent = " ".repeat(depth);
                 String directoryName = entry.getFileName().toString();
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
@@ -43,7 +42,7 @@ public class BuildDirectoryTree {
 
 
                 try {
-                    TransformFilesToObjects(entry, depth + 1);
+                    TransformFilesToObjects(entry);
                 } catch (IOException e) {
                     throw e;
                 }
@@ -54,11 +53,10 @@ public class BuildDirectoryTree {
                 }
 
                 String type = "-F";
-                String indent = " ".repeat(depth);
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 String fileName = entry.getFileName().toString();
-                new DirectoryEntry(fileName, type, dateStr);
+               new DirectoryEntry(fileName, type, dateStr);
 
 
 
@@ -66,5 +64,6 @@ public class BuildDirectoryTree {
 
         }
 
+        return null;
     }
 }
