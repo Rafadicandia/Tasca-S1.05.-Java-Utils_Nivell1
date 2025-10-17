@@ -1,21 +1,22 @@
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.attribute.FileTime;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DirectoryEntry {
+public class DirectoryEntry implements Serializable {
     private String name;
     private String type;
     private String lastModified;
+    private List<DirectoryEntry> childs;
 
 
-    public DirectoryEntry(String name, String type){
+    public DirectoryEntry(String name, String type, String lastModified){
         this.name = name;
         this.type = type;
+        this.lastModified = lastModified;
+        
+        if(type.equals('D')) {
+            this.childs = new ArrayList<>();
+        }
     }
 
 

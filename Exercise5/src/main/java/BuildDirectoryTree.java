@@ -9,7 +9,7 @@ import java.util.*;
 
 public class BuildDirectoryTree {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    
+
     public static void PrintDirectoryTree(Path directoryPath, int depth, PrintWriter writer) throws IOException {
 
         List<Path> contents = new ArrayList<>();
