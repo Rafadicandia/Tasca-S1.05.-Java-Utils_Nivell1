@@ -26,8 +26,10 @@ public class Main {
             return;
         }
         try {
+            BuildDirectoryTree.TransformFilesToObjects(directoryPath, 0);
 
             FileOutputStream fileOutputStream = new FileOutputStream("directoryTree.ser");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
         } catch (IOException e) {
             System.err.println("Error reading directory: " + e.getMessage());

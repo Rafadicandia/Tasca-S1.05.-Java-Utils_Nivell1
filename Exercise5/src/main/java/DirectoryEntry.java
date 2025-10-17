@@ -1,6 +1,5 @@
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class DirectoryEntry implements Serializable {
@@ -23,7 +22,6 @@ public class DirectoryEntry implements Serializable {
     public void addChild(DirectoryEntry child){
         if(this.childs != null){
             this.childs.add(child);
-
         }
     }
 
