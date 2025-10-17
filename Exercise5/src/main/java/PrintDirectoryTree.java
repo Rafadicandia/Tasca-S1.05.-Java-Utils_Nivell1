@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.io.Serializable<>
+import java.io.Serializable;
 import java.io.*;
 
 public class PrintDirectoryTree {
