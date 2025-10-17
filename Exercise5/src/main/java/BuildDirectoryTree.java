@@ -33,9 +33,13 @@ public class BuildDirectoryTree {
             String dateStr;
             if(Files.isDirectory(entry)){
 
+
                 String type = "-D";
                 String indent = " ".repeat(depth);
                 String directoryName = entry.getFileName().toString();
+                FileTime lastModified = Files.getLastModifiedTime(entry);
+                dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
+                new DirectoryEntry(directoryName, type, dateStr);
 
 
                 try {
@@ -54,6 +58,7 @@ public class BuildDirectoryTree {
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 String fileName = entry.getFileName().toString();
+                new DirectoryEntry(fileName, type, dateStr);
 
 
 
