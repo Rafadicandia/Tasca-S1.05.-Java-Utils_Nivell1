@@ -9,7 +9,7 @@ import java.util.*;
 public class BuildDirectoryTree {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public static List<DirectoryEntry> TransformFilesToObjects(Path directoryPath) throws IOException {
+    public static DirectoryEntry TransformFilesToObjects(Path directoryPath) throws IOException {
 
         List<Path> contents = new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class BuildDirectoryTree {
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 new DirectoryEntry(directoryName, type, dateStr);
-                List<DirectoryEntry> children = buildDirectoryTree(entry);
+                List<DirectoryEntry> children = BuildDirectoryTree.TransformFilesToObjects(entry).getChilds();
 
 
                 try {
@@ -60,8 +60,6 @@ public class BuildDirectoryTree {
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 String fileName = entry.getFileName().toString();
                new DirectoryEntry(fileName, type, dateStr);
-
-
 
             }
 
