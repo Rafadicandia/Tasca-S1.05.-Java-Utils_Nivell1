@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         if (args.length != 1) {
             System.out.println("Usage: java PrintDirectoryTree <directory_path>");
@@ -25,13 +25,14 @@ public class Main {
             System.err.println("Error: The path is not a directory: " + directoryPath);
             return;
         }
+
+        DirectoryEntry rootObject = BuildDirectoryTree.TransformFilesToObjects(directoryPath);
+
         try (FileOutputStream fileOutputStream = new FileOutputStream("directoryTree.ser");
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)){
 
-            DirectoryEntry rootObject = BuildDirectoryTree.TransformFilesToObjects(directoryPath);
-
-
             objectOutputStream.writeObject(rootObject);
+            System.out.println("   -> Serialización completada con éxito.");
 
         } catch (IOException e) {
             System.err.println("Error reading directory: " + e.getMessage());
