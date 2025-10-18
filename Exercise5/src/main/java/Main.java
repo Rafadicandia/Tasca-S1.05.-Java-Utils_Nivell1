@@ -32,10 +32,24 @@ public class Main {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)){
 
             objectOutputStream.writeObject(rootObject);
-            System.out.println("   -> Serialización completada con éxito.");
+            System.out.println("   -> Serialization completed");
 
         } catch (IOException e) {
             System.err.println("Error reading directory: " + e.getMessage());
         }
+//deserialization
+        DirectoryEntry deserializedRoot;
+        try (FileInputStream fileInputStream = new FileInputStream("directoryTree.ser");
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)){
+
+            deserializedRoot = (DirectoryEntry) objectInputStream.readObject();
+
+            System.out.println("   -> Deserialization completed");
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }
