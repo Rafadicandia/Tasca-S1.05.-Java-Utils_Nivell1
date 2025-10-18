@@ -11,9 +11,16 @@ public class BuildDirectoryTree {
 
     public static DirectoryEntry TransformFilesToObjects(Path directoryPath) throws IOException {
 
+        
         List<Path> contents = new ArrayList<>();
 
         List<DirectoryEntry> entries = new ArrayList<>();
+
+        FileTime rootObjectLastModified = Files.getLastModifiedTime(directoryPath);
+        String rootObjectDate;
+        rootObjectDate = DATE_FORMAT.format(new Date(rootObjectLastModified.toMillis()));
+
+        DirectoryEntry rootObject = new DirectoryEntry(directoryPath.getFileName().toString().trim(), "D", rootObjectDate);
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directoryPath)) {
 
