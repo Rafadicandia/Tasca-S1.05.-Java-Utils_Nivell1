@@ -25,11 +25,12 @@ public class Main {
             System.err.println("Error: The path is not a directory: " + directoryPath);
             return;
         }
-        try {
+        try (FileOutputStream fileOutputStream = new FileOutputStream("directoryTree.ser");
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)){
+
             DirectoryEntry rootObject = BuildDirectoryTree.TransformFilesToObjects(directoryPath);
 
-            FileOutputStream fileOutputStream = new FileOutputStream("directoryTree.ser");
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
             objectOutputStream.writeObject(rootObject);
 
         } catch (IOException e) {
