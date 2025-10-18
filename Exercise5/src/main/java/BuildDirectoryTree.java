@@ -41,18 +41,10 @@ public class BuildDirectoryTree {
 
             String dateStr;
             if(Files.isDirectory(entry)){
-
-
-                String type = "-D";
-                String directoryName = entry.getFileName().toString().trim();
-                FileTime lastModified = Files.getLastModifiedTime(entry);
-                dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
-                DirectoryEntry currentEntry = new DirectoryEntry(directoryName, type, dateStr);
-                //entries.add(currentEntry);
-                rootObject.addChild(currentEntry);
-
+                
                 try {
-                    TransformFilesToObjects(entry);
+                    DirectoryEntry subTreeRoot = TransformFilesToObjects(entry);
+                    rootObject.addChild(subTreeRoot);
                 } catch (IOException e) {
                     throw e;
                 }
