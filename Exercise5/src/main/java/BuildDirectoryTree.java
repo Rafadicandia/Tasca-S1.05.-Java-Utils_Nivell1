@@ -48,7 +48,7 @@ public class BuildDirectoryTree {
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 DirectoryEntry currentEntry = new DirectoryEntry(directoryName, type, dateStr);
-                entries.add(currentEntry);
+                //entries.add(currentEntry);
                 rootObject.addChild(currentEntry);
 
                 try {
@@ -66,12 +66,13 @@ public class BuildDirectoryTree {
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 String fileName = entry.getFileName().toString();
-               new DirectoryEntry(fileName, type, dateStr);
+                DirectoryEntry currentEntry = new DirectoryEntry(fileName, type, dateStr);
+                rootObject.addChild(currentEntry);
 
             }
 
         }
 
-        return null;
+        return rootObject;
     }
 }
