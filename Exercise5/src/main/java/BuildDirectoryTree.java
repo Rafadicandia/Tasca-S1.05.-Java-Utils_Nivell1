@@ -11,7 +11,7 @@ public class BuildDirectoryTree {
 
     public static DirectoryEntry TransformFilesToObjects(Path directoryPath) throws IOException {
 
-        
+
         List<Path> contents = new ArrayList<>();
 
         List<DirectoryEntry> entries = new ArrayList<>();
@@ -44,13 +44,11 @@ public class BuildDirectoryTree {
 
 
                 String type = "-D";
-                String directoryName = entry.getFileName().toString();
+                String directoryName = entry.getFileName().toString().trim();
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 new DirectoryEntry(directoryName, type, dateStr);
-                List<DirectoryEntry> children = BuildDirectoryTree.TransformFilesToObjects(entry).getChilds();
-
-
+                
                 try {
                     TransformFilesToObjects(entry);
                 } catch (IOException e) {
