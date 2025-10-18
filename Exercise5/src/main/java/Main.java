@@ -26,7 +26,7 @@ public class Main {
             return;
         }
         try {
-            BuildDirectoryTree.TransformFilesToObjects(directoryPath, 0);
+            BuildDirectoryTree.TransformFilesToObjects(directoryPath);
 
             FileOutputStream fileOutputStream = new FileOutputStream("directoryTree.ser");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

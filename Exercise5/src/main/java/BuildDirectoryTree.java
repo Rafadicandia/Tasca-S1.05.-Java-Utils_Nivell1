@@ -13,6 +13,8 @@ public class BuildDirectoryTree {
 
         List<Path> contents = new ArrayList<>();
 
+        List<DirectoryEntry> entries = new ArrayList<>();
+
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directoryPath)) {
 
             for (Path entry : stream) {
@@ -39,6 +41,7 @@ public class BuildDirectoryTree {
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
                 new DirectoryEntry(directoryName, type, dateStr);
+                List<DirectoryEntry> children = buildDirectoryTree(entry);
 
 
                 try {
