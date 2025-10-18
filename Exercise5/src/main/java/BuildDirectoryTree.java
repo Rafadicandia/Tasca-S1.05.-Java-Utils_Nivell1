@@ -13,9 +13,7 @@ public class BuildDirectoryTree {
 
 
         List<Path> contents = new ArrayList<>();
-
-        //List<DirectoryEntry> entries = new ArrayList<>();
-
+        
         FileTime rootObjectLastModified = Files.getLastModifiedTime(directoryPath);
         String rootObjectDate;
         rootObjectDate = DATE_FORMAT.format(new Date(rootObjectLastModified.toMillis()));
@@ -41,7 +39,7 @@ public class BuildDirectoryTree {
 
             String dateStr;
             if(Files.isDirectory(entry)){
-                
+
                 try {
                     DirectoryEntry subTreeRoot = TransformFilesToObjects(entry);
                     rootObject.addChild(subTreeRoot);
