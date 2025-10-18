@@ -48,7 +48,12 @@ public class Main {
 
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+
+        }catch (IOException e) {
+            throw e;
+
         }
+    }
 
 
     }
