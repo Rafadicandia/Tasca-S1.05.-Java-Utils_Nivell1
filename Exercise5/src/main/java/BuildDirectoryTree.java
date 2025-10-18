@@ -14,7 +14,7 @@ public class BuildDirectoryTree {
 
         List<Path> contents = new ArrayList<>();
 
-        List<DirectoryEntry> entries = new ArrayList<>();
+        //List<DirectoryEntry> entries = new ArrayList<>();
 
         FileTime rootObjectLastModified = Files.getLastModifiedTime(directoryPath);
         String rootObjectDate;
@@ -47,8 +47,10 @@ public class BuildDirectoryTree {
                 String directoryName = entry.getFileName().toString().trim();
                 FileTime lastModified = Files.getLastModifiedTime(entry);
                 dateStr = DATE_FORMAT.format(new Date(lastModified.toMillis()));
-                new DirectoryEntry(directoryName, type, dateStr);
-                
+                DirectoryEntry currentEntry = new DirectoryEntry(directoryName, type, dateStr);
+                entries.add(currentEntry);
+                rootObject.addChild(currentEntry);
+
                 try {
                     TransformFilesToObjects(entry);
                 } catch (IOException e) {
