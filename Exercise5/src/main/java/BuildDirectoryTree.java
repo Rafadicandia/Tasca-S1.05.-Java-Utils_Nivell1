@@ -13,7 +13,7 @@ public class BuildDirectoryTree {
 
 
         List<Path> contents = new ArrayList<>();
-        
+
         FileTime rootObjectLastModified = Files.getLastModifiedTime(directoryPath);
         String rootObjectDate;
         rootObjectDate = DATE_FORMAT.format(new Date(rootObjectLastModified.toMillis()));

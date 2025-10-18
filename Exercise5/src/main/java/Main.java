@@ -26,11 +26,11 @@ public class Main {
             return;
         }
         try {
-            BuildDirectoryTree.TransformFilesToObjects(directoryPath);
+            DirectoryEntry rootObject = BuildDirectoryTree.TransformFilesToObjects(directoryPath);
 
             FileOutputStream fileOutputStream = new FileOutputStream("directoryTree.ser");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.write();
+            objectOutputStream.writeObject(rootObject);
 
         } catch (IOException e) {
             System.err.println("Error reading directory: " + e.getMessage());
