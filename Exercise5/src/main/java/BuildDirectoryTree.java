@@ -48,9 +48,6 @@ public class BuildDirectoryTree {
                 }
 
             }else{
-                if(entry.getFileName().toString().endsWith(".txt")) {
-                    ReadTxtFiles.PrintFileContentInConsole(entry);
-                }
 
                 String type = "-F";
                 FileTime lastModified = Files.getLastModifiedTime(entry);
