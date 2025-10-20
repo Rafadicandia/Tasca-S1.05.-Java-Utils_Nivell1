@@ -50,7 +50,6 @@ public class PrintDirectoryTree {
                 try {
                     PrintDirectoryTree(entry, depth + 1);
                 } catch (IOException e) {
-                    // Manejar la excepción (ej. imprimir un error de permiso)
                 }
 
             }else{
