@@ -44,7 +44,9 @@ public class Main {
 
             deserializedRoot = (DirectoryEntry) objectInputStream.readObject();
 
-            System.out.println("   -> Deserialization completed");
+            System.out.println("   -> Deserialization completed " +deserializedRoot);
+
+
 
 
         } catch (ClassNotFoundException e) {

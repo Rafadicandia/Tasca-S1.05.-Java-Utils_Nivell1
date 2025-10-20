@@ -1,0 +1,11 @@
+Angola-D
+ Delta.txt-F 2025-10-16 11:19:48
+Bruno-D
+ Arbusto.doc-F 2025-10-15 23:10:54
+ Bote.pdf-F 2025-10-15 23:12:36
+Colorado-D
+ Bulgaria.txt-F 2025-10-20 11:29:37
+ Cat.pdf-F 2025-10-15 23:06:18
+ Dallas.doc-F 2025-10-15 23:09:05
+ Disney-D
+  Pluto.pdf-F 2025-10-16 11:25:36

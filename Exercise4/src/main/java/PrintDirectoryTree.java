@@ -54,7 +54,7 @@ public class PrintDirectoryTree {
 
 
             }else{
-                if(entry.getFileName().toString().endsWith(".txt")) {
+                if(entry.getFileName().toString().endsWith(".txt")) {//separar en metodo en main?
                     ReadTxtFiles.PrintFileContentInConsole(entry);
                 }
 

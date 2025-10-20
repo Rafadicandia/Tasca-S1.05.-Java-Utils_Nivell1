@@ -1,6 +1,7 @@
 
 ## 📄 Description - Exercise Statement
 
+
 ## 💻 Used Technologies
 
 **Java**: 24 (OpenJDK)
